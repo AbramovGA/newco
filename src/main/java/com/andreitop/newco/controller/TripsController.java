@@ -1,6 +1,7 @@
 package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.ApiConstant;
+import com.andreitop.newco.dto.IdentifiableDto;
 import com.andreitop.newco.dto.TripDto;
 import com.andreitop.newco.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,43 +19,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping(ApiConstant.API_V_1 + "/trips")
-public class TripsController {
-
-    private final TripService tripService;
+public class TripsController extends AbstractController<TripService, TripDto> {
 
     @Autowired
-    public TripsController(TripService tripService) {
-        this.tripService = tripService;
+    public TripsController(TripService service) {
+        super(service);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<TripDto> findAll() {
-        return tripService.findAll();
+        return findAllInternal();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public TripDto findById(@PathVariable("id") final Long id) {
-        return tripService.findById(id);
+        return findByIdInternal(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody final TripDto trip) {
-        tripService.save(trip);
+        createInternal(trip);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") final Long id) {
-        tripService.delete(id);
+        deleteInternal(id);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody final TripDto newTrip) {
-        tripService.update(newTrip);
+        updateInternal(newTrip);
     }
 
 }
