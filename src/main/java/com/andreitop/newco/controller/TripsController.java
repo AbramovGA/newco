@@ -1,7 +1,6 @@
 package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.ApiConstant;
-import com.andreitop.newco.dto.IdentifiableDto;
 import com.andreitop.newco.dto.TripDto;
 import com.andreitop.newco.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
