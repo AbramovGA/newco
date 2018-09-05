@@ -12,10 +12,10 @@ public class TripDto implements IdentifiableDto {
     @Min(1)
     private Long id;
     @NotNull
-    @Pattern(regexp = "/^[A-Z]{3}$/", message = "Incompatible format with IATA airport code")
+    @Pattern(regexp = "/^[A-Z]{3}$/", message = "Incompatible format of origin with IATA airport code")
     private String origin;
     @NotNull
-    @Pattern(regexp = "/^[A-Z]{3}$/", message = "Incompatible format with IATA airport code")
+    @Pattern(regexp = "/^[A-Z]{3}$/", message = "Incompatible format of destination with IATA airport code")
     private String destination;
     @NotNull
     @Min(0)
