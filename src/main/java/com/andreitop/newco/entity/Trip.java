@@ -1,15 +1,19 @@
-package com.andreitop.newco.dto;
+package com.andreitop.newco.entity;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class TripDto implements Serializable {
+@Entity
+public class Trip {
 
-    private static final long serialVersionUID = 5914366185889783660L;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(updatable = false)
     private Long id;
+
     private String origin;
     private String destination;
     private Integer price;
+
 
     public Long getId() {
         return id;

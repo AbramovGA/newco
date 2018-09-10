@@ -1,19 +1,12 @@
 package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.ApiConstant;
-import com.andreitop.newco.dto.TripDto;
+import com.andreitop.newco.entity.Trip;
 import com.andreitop.newco.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -29,19 +22,19 @@ public class TripsController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<TripDto> findAll() {
+    public List<Trip> findAll() {
         return tripService.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public TripDto findById(@PathVariable("id") final Long id) {
+    public Trip findById(@PathVariable("id") final Long id) {
         return tripService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody final TripDto trip) {
+    public void create(@RequestBody final Trip trip) {
         tripService.save(trip);
     }
 
@@ -53,7 +46,7 @@ public class TripsController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody final TripDto newTrip) {
+    public void update(@RequestBody final Trip newTrip) {
         tripService.update(newTrip);
     }
 

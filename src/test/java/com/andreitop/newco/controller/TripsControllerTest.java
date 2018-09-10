@@ -1,7 +1,7 @@
 package com.andreitop.newco.controller;
 
 import com.andreitop.newco.common.ApiConstant;
-import com.andreitop.newco.dto.TripDto;
+import com.andreitop.newco.entity.Trip;
 import com.andreitop.newco.service.TripService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +10,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.util.Collections;
 import java.util.List;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TripsController.class)
@@ -46,13 +46,13 @@ public class TripsControllerTest {
     @Test
     public void givenTrips_whenGetTrips_thenReturnJsonArray() throws Exception {
 
-        TripDto tripDto = new TripDto();
-        tripDto.setId(1L);
-        tripDto.setOrigin("MOW");
-        tripDto.setDestination("LED");
-        tripDto.setPrice(4232);
+        Trip trip = new Trip();
+        trip.setId(1L);
+        trip.setOrigin("MOW");
+        trip.setDestination("LED");
+        trip.setPrice(4232);
 
-        List<TripDto> allTrips = Collections.singletonList(tripDto);
+        List<Trip> allTrips = Collections.singletonList(trip);
         given(tripService.findAll()).willReturn(allTrips);
 
         mockMvc.perform(get(API_URL))
